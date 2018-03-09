@@ -1,36 +1,31 @@
+[![GoDoc](https://godoc.org/github.com/ryskiwt/pubsub-go?status.svg)](https://godoc.org/github.com/ryskiwt/pubsub-go)
+[![License](https://img.shields.io/badge/License-BSD%202--Clause-orange.svg)](https://github.com/ryskiwt/pubsub-go/blob/master/LICENSE)
+
 ## pubsub-go
 
 simple pub/sub library written in golang
 
-## features
+### features
 - quite simple interface (Pub/Sub/PSub)
 - type of topic is string
 - type of message is interface{}
 - support pattern subscribe (PSub/PUnsub)
 
-## interface
+### interface
 
 ```go
-// Hub represents PubSubHub.
 type Hub interface {
-	// Pub publishes message.
 	Pub(topic string, msg interface{})
-	// Sub adds subscription and returns channel to subscribe.
 	Sub(topic string) <-chan interface{}
-	// Unsub removes subscription corresponding to the submitted channel.
 	Unsub(topic string, ch <-chan interface{})
-	// PSub adds pattern subscriptions and returns channel to subscribe.
 	PSub(pattern string) <-chan interface{}
-	// PUnsub removes pattern subscription corresponding to the submitted channel.
 	PUnsub(pattern string, ch <-chan interface{})
-	// Close closes Hub.
 	Close()
-	// Context returns context.
 	Context() context.Context
 }
 ```
 
-## example
+### example
 
 ```go
 package main
